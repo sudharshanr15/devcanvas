@@ -1,0 +1,19 @@
+name: dev_canvas
+
+services:
+    dev_canvas:
+        build: ./docker/dev/
+        volumes:
+            - dev_canvas:/var/www/dev_canvas
+        ports:
+            - "8000:8000"
+
+    mysql:
+        image: mysql
+        volumes:
+            - mysql:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: toor
+volumes:
+    mysql:
+    dev_canvas:
