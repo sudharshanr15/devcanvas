@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CollectionsController;
 use App\Http\Controllers\ProjectsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisteredUserController;
@@ -22,9 +23,8 @@ Route::middleware("auth")->prefix("/dashboard/{user}")->group(function(){
         Route::get("/databases", [UserDatabasesController::class, "show"])->name("project.databases");
         Route::post("/databases", [UserDatabasesController::class, "store"]);
 
-        Route::get("/databases/{database}", function(string $user, string $project, string $database){
-            return [$user, $project, 'databases', $database];
-        })->name("databases.database");
+        Route::get("/databases/{database}", [CollectionsController::class, "show"])->name("databases.database");
+        Route::post("/databases/{database}", [CollectionsController::class, "store"]);
     });
     // Route::get("/{project}/api_request", function(string $user, string $project){
     //     return [$user, $project, "api_request"];
