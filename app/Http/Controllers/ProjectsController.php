@@ -10,6 +10,5 @@ class ProjectsController extends Controller
 {
     public function show($user, $project){
         return [$user, $project];
-        // return view("projects.dashboard");
     }
 }

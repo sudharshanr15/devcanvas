@@ -11,7 +11,7 @@ class UserController extends Controller
     public function show($user){
         $projects = Projects::where("user_id", Auth::user()->id)->get();
 
-        return view("projects.dashboard", ["user" => $user, "projects" => $projects]);
+        return view("user.dashboard", ["user" => $user, "projects" => $projects]);
     }
 
     public function store($user){
