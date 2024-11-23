@@ -74,7 +74,7 @@ class UserDatabasesController extends Controller
     public function show(UserDatabases $userDatabases, User $user, Projects $project)
     {
         return view("project.databases.dashboard", [
-            "userDatabases" => $userDatabases->all(),
+            "userDatabases" => $userDatabases->all()->where("projects_id", $project->id),
             "user" => $user,
             "project" => $project
         ]);
