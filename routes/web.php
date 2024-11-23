@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserDatabasesController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -14,15 +15,26 @@ Route::middleware("auth")->prefix("/dashboard/{user}")->group(function(){
     Route::get("/", [UserController::class, "show"])->name("user.dashboard");
     Route::post("/", [UserController::class, "store"]);
 
-    Route::get("/{project}", [ProjectsController::class, "show"])->name("project.dashboard");
 
-    Route::get("/{project}/databases", function(string $user, string $project){
-        return [$user, $project, "databases"];
-    });
+    Route::prefix("/{project}")->group(function(){
+        Route::get("/", [ProjectsController::class, "show"])->name("project.dashboard");
 
-    Route::get("/{project}/databases/{collection}", function(string $user, string $project, string $collection){
-        return [$user, $project, 'databases', "collections"];
+        Route::get("/databases", [UserDatabasesController::class, "show"])->name("project.databases");
+        Route::post("/databases", [UserDatabasesController::class, "store"]);
+
+        Route::get("/databases/{database}", function(string $user, string $project, string $database){
+            return [$user, $project, 'databases', $database];
+        })->name("databases.database");
     });
+    // Route::get("/{project}/api_request", function(string $user, string $project){
+    //     return [$user, $project, "api_request"];
+    // });
+    // Route::get("/{project}/file_storage", function(string $user, string $project){
+    //     return [$user, $project, "file_storage"];
+    // });
+    // Route::get("/{project}/auth", function(string $user, string $project){
+    //     return [$user, $project, "auth"];
+    // });
 });
 
 Route::get("/register", [RegisteredUserController::class, "create"]);
