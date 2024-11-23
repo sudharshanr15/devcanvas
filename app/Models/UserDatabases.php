@@ -10,7 +10,11 @@ class UserDatabases extends Model
 
     protected $fillable = [
         'driver',
-        'name',
+        'host',
+        'port',
+        'database',
+        'username',
+        'password',
         'projects_id',
     ];
 }

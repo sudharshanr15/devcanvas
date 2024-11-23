@@ -11,7 +11,7 @@
     <ul>
         @foreach ($userDatabases as $db)
             <li>
-                <a href="{{ route("databases.database", ["user" => $user, "project" => $project->id, "database" => $db->id]) }}">{{ $db->name }}</a>
+                <a href="{{ route("databases.database", ["user" => $user, "project" => $project->id, "database" => $db->id]) }}">{{ $db->database }}</a>
             </li>
         @endforeach
     </ul>
@@ -24,14 +24,22 @@
 
         <div>
             <label for="db_name">Database Name</label>
-            <input type="text" name="name" id="db_name" required>
+            <input type="text" name="database" id="db_name" required>
         </div>
         <div>
             <label for="driver">Database Driver</label>
-            <select name="driver" id="driver">
-                <option value="mysql">Mysql</option>
+            <select name="driver" id="driver" required>
+                <option value="mysql" selected>Mysql</option>
                 <option value="pgsql">PGSQL</option>
             </select>
+        </div>
+        <div>
+            <label for="host">Host</label>
+            <input type="text" id="host" name="host" value="mysql" required>
+        </div>
+        <div>
+            <label for="port">Port</label>
+            <input type="text" id="port" name="port" value="3306" required>
         </div>
         <div>
             <button type="reset">Reset</button>

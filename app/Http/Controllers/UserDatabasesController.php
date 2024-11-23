@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Enums\DBDrivers;
+use App\Models\Connection;
 use App\Models\Projects;
 use App\Models\User;
 use App\Models\UserDatabases;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 class UserDatabasesController extends Controller
 {
@@ -25,15 +28,42 @@ class UserDatabasesController extends Controller
     public function store(Request $request, User $user, Projects $project)
     {
         $request->validate([
-            "name" => ["required", "max:20", "unique:user_databases,name"],
-            "driver" => [Rule::enum(DBDrivers::class)]
+            "driver" => [Rule::enum(DBDrivers::class)],
+            "database" => ["required", "max:50", "unique:user_databases,database", 'regex:/^[a-zA-Z_][a-zA-Z0-9_]*$/'],
+            "host" => ["required"],
+            "port" => ["required"],
+            // "username" => ['required'],
+            // "password" => ["required"],
         ]);
 
-        UserDatabases::create([
-            "name" => request("name"),
+        $attributes = [
+            "database" => request("database"),
             "driver" => request("driver"),
-            "projects_id" => $project->id
-        ]);
+            "host" => request("host"),
+            "port" => request("port"),
+            "projects_id" => $project->id,
+
+            # TODO: try to make username and password dynamic fields
+
+            "username" => "root",
+            "password" => "first",
+        ];
+
+        $database_info = new UserDatabases([...$attributes, "database" => ""]);
+
+        $db = Connection::getDynamicConnection($database_info);
+
+        try{
+            $db->getPdo();
+            $db->statement("CREATE DATABASE " . request("database"));
+            UserDatabases::create($attributes);
+        }catch(Exception $e){
+            $db->statement("DROP DATABASE " . request("database"));
+
+            throw ValidationException::withMessages([
+                "database" => $e->getMessage()
+            ]);
+        }
 
         return redirect(route("project.databases", ["user" => $user, "project" => $project]));
     }

@@ -15,7 +15,14 @@ return new class extends Migration
         Schema::create('user_databases', function (Blueprint $table) {
             $table->id();
             $table->string("driver");
-            $table->string("name")->unique("name");
+            $table->string("host");
+            $table->string("port", 6);
+            $table->string("database")->unique("database");
+
+            # TODO: try to make username and password dynamic fields
+            $table->string("username");
+            $table->string("password");
+
             $table->foreignIdFor(Projects::class);
             $table->timestamps();
         });
