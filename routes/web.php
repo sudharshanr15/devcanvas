@@ -1,21 +1,20 @@
 <?php
 
+use App\Http\Controllers\ProjectsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('dashboard');
 })->middleware("auth");
 
 Route::middleware("auth")->prefix("/dashboard/{user}")->group(function(){
-    Route::get("/", function(){
-        return "sdf";
-    });
+    Route::get("/", [UserController::class, "show"])->name("user.dashboard");
+    Route::post("/", [UserController::class, "store"]);
 
-    Route::get("/{project}", function(string $user, string $project){
-        return [$user, $project];
-    });
+    Route::get("/{project}", [ProjectsController::class, "show"])->name("project.dashboard");
 
     Route::get("/{project}/databases", function(string $user, string $project){
         return [$user, $project, "databases"];
