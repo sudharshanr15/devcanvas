@@ -8,7 +8,7 @@
         <ul>
             @foreach ($collections as $collection)
                 <li>
-                    {{ $collection->name }}
+                    {{ $collection->id . ". " . $collection->name }}
                 </li>
             @endforeach
         </ul>
