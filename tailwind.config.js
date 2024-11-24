@@ -14,6 +14,17 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                'primary': {
+                    'neutral': {
+                        'light': 'rgb(250 250 250)',
+                        'dark': 'rgb(229 229 229)'
+                    },
+                    'action': {
+                        'light': "#4281a4"
+                    }
+                },
+            }
         },
     },
     plugins: [],
