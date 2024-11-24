@@ -8,12 +8,3 @@
         @apply bg-primary-neutral-dark text-black;
     }
 }
-
-input{
-    outline: 1px solid black;
-}
-
-a{
-    text-decoration: underline;
-    color: dodgerblue;
-}
