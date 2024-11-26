@@ -1,5 +1,7 @@
 @extends('project.layout')
 
 @section('main')
-    <h1>hello world inside dashboard</h1>
+    <div class="p-8">
+        <h1 class="text-3xl font-bold text-gray-900">Project Dashboard</h1>
+    </div>
 @endsection
