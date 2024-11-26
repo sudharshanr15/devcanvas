@@ -80,7 +80,7 @@ class CollectionsController extends Controller
     {
         $collections = Collections::all()->where("user_databases_id", $database->id);
 
-        return view("project.databases.collection.list", [
+        return view("project.databases.collection.dashboard", [
             "user" => $user,
             "project" => $project,
             "collections" => $collections

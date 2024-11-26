@@ -1,4 +1,4 @@
-@props(['active' => "false", "user", "project"])
+@props(['active' => false, "user", "project"])
 <x-modal :active="$active">
     <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
         <form action="{{ route('project.databases', ["user" => $user, "project" => $project->id]) }}" method="post">

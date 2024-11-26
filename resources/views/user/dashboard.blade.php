@@ -21,5 +21,5 @@
         </div>
     </div>
 </section>
-<x-projects.form-modal active="false" :user="$user"></x-projects.form-modal>
+<x-projects.form-modal :active="false" :user="$user"></x-projects.form-modal>
 </x-layout>

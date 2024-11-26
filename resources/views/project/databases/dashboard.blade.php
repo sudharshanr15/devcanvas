@@ -16,9 +16,10 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             @foreach ($userDatabases as $db)
-                    <x-projects.database-list :user="$user" :project="$project" :db="$db"></x-projects.database-list>
+                    <x-projects.database.list :user="$user" :project="$project" :db="$db"></x-projects.database.list>
             @endforeach
         </div>
     </div>
 </div>
+<x-projects.database.modal :active="true" :user="$user" :project="$project"></x-projects.database.modal>
 @endsection

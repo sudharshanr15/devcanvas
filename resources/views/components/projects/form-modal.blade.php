@@ -1,4 +1,4 @@
-@props(['active' => "false", "user"])
+@props(['active' => false, "user"])
 <x-modal :active="$active">
     <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
         <form action="{{ route('user.dashboard', $user) }}" method="post">
