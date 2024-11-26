@@ -14,7 +14,7 @@
                       </div>
                     </div>
                     <div class="w-full my-3">
-                      <label for="db_name" class="block text-sm/6 font-medium text-gray-900">Database Driver</label>
+                      <label for="driver" class="block text-sm/6 font-medium text-gray-900">Database Driver</label>
                       <div class="relative mt-2 rounded-md shadow-sm">
                         <select id="driver" name="driver" class="bg-white block w-full rounded-md border-0 py-1.5 px-7 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">
                           <option value="mysql">MySQL</option>
