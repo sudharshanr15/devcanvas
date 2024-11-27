@@ -44,14 +44,11 @@ class UserDatabasesController extends Controller
             "host" => DBHost::getHost(DBDrivers::from(request("driver")))->value,
             "port" => request("port"),
             "projects_id" => $project->id,
-            "username" => config("database.connections.common.username"),
+            "username" => config("database.connections.common.root_user." . request("driver")),
             "password" => config('database.connections.common.password'),
         ];
 
-        $database_info = new UserDatabases([...$attributes, "database" => "devcanvas"]);
-
-        // privelege user persission
-        $database_info["username"] = config("database.connections.common.root_user." . $database_info->driver);
+        $database_info = new UserDatabases([...$attributes, "database" => ""]);
 
         $db = Connection::getDynamicConnection($database_info);
 
