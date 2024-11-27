@@ -28,7 +28,8 @@
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
               <!-- Current: "bg-primary-action-light text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-              <a href="#" class="rounded-md bg-primary-action-light px-3 py-2 text-sm font-medium text-white" aria-current="page">Dashboard</a>
+              {{-- <a href="#" class="rounded-md bg-primary-action-light bg-opacity-50 px-3 py-2 text-sm font-medium text-gray-900" aria-current="page">Dashboard</a> --}}
+              <x-link-btn href="/dashboard" :active="request()->is('dashboard/*')">Dashboard</x-link-btn>
             </div>
           </div>
         </div>

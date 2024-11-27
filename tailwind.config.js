@@ -21,7 +21,7 @@ export default {
                         'dark': 'rgb(229 229 229)'
                     },
                     'action': {
-                        'light': "#4281a4"
+                        'light': "rgb(17 24 39)"
                     }
                 },
             }
