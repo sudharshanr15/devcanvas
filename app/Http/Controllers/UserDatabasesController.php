@@ -42,11 +42,8 @@ class UserDatabasesController extends Controller
             "host" => request("host"),
             "port" => request("port"),
             "projects_id" => $project->id,
-
-            # TODO: try to make username and password dynamic fields
-
-            "username" => "root",
-            "password" => "first",
+            "username" => config("database.connections.common.username"),
+            "password" => config('database.connections.common.password'),
         ];
 
         $database_info = new UserDatabases([...$attributes, "database" => ""]);

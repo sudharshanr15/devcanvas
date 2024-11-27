@@ -31,6 +31,11 @@ return [
 
     'connections' => [
 
+        'common' => [
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', '')
+        ],
+
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DB_URL'),
