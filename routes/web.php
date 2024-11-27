@@ -17,7 +17,7 @@ Route::middleware("auth")->prefix("/dashboard/{user}")->group(function(){
     Route::post("/", [UserController::class, "store"]);
 
 
-    Route::prefix("/{project}")->group(function(){
+    Route::prefix("/projects/{project}")->group(function(){
         Route::get("/", [ProjectsController::class, "show"])->name("project.dashboard");
 
         Route::get("/databases", [UserDatabasesController::class, "show"])->name("project.databases");
