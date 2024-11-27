@@ -37,10 +37,10 @@ Route::middleware("auth")->prefix("/dashboard/{user}")->group(function(){
     // });
 });
 
-Route::get("/register", [RegisteredUserController::class, "create"]);
+Route::get("/register", [RegisteredUserController::class, "create"])->name('register');
 Route::post("/register", [RegisteredUserController::class, "store"]);
 
 Route::get("/login", [SessionController::class, "create"])->name("login");
 Route::post("/login", [SessionController::class, "store"]);
 
-Route::post("/logout", [SessionController::class, "destroy"]);
+Route::post("/logout", [SessionController::class, "destroy"])->name("logout");
