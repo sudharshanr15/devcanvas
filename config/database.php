@@ -33,7 +33,11 @@ return [
 
         'common' => [
             'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', '')
+            'password' => env('DB_PASSWORD', ''),
+            'root_user' => [
+                'mysql' => "root",
+                'pgsql' => env('DB_USERNAME', 'root'),
+            ]
         ],
 
         'sqlite' => [
