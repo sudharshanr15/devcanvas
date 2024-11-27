@@ -17,11 +17,11 @@ export default {
             colors: {
                 'primary': {
                     'neutral': {
-                        'light': 'rgb(250 250 250)',
-                        'dark': 'rgb(229 229 229)'
+                        'light': 'rgb(24 24 27)',
+                        'dark': '#0a0908'
                     },
                     'action': {
-                        'light': "rgb(17 24 39)"
+                        'light': "#565676"
                     }
                 },
             }

@@ -1,3 +1,3 @@
 @props(['type' => "text", "name", "id", "required" => false, "placeholder" => "", "value" => ""])
 
-<input type="{{ $type }}" name="{{ $name }}" {{ $required ? "required" : "" }} value="{{ $value }}" id="{{ $id }}" class="block w-full rounded-md border-0 py-1.5 px-7 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6" placeholder="{{ $placeholder }}">
+<input type="{{ $type }}" name="{{ $name }}" {{ $required ? "required" : "" }} value="{{ $value }}" id="{{ $id }}" class="block w-full bg-primary-neutral-light rounded-md border-0 py-1.5 px-7 text-slate-200 ring-1 ring-inset ring-stone-600 placeholder:text-gray-400 sm:text-sm/6" placeholder="{{ $placeholder }}">

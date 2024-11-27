@@ -1,4 +1,4 @@
-<nav class="bg-white shadow border-b-2">
+<nav class="bg-primary-neutral-dark shadow border-b border-stone-500">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -28,7 +28,7 @@
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
               <!-- Current: "bg-primary-action-light text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-              {{-- <a href="#" class="rounded-md bg-primary-action-light bg-opacity-50 px-3 py-2 text-sm font-medium text-gray-900" aria-current="page">Dashboard</a> --}}
+              {{-- <a href="#" class="rounded-md bg-primary-action-light bg-opacity-50 px-3 py-2 text-sm font-medium text-slate-200" aria-current="page">Dashboard</a> --}}
               <x-link-btn href="/dashboard" :active="request()->is('dashboard/*')">Dashboard</x-link-btn>
             </div>
           </div>
@@ -47,10 +47,10 @@
                   </span>
                 </button>
               </div>
-              <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+              <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-primary-neutral-dark py-1 shadow-lg ring-1 ring-black/5 focus:outline-none border border-stone-600" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                 <form action="{{ route("logout") }}" method="post">
                   @csrf
-                  <button class="block px-4 py-2 text-sm text-gray-700">Log out</button>
+                  <button class="block px-4 py-2 text-sm text-gray-300">Log out</button>
                 </form>
               </div>
             </div>
@@ -70,7 +70,7 @@
     <div class="sm:hidden" id="mobile-menu">
       <div class="space-y-1 px-2 pb-3 pt-2">
         <!-- Current: "bg-primary-action-light text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-        <a href="#" class="block rounded-md bg-primary-action-light px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</a>
+        <a href="#" class="block rounded-md bg-primary-action-light px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
       </div>
     </div>
   </nav>

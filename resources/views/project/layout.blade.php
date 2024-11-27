@@ -1,19 +1,19 @@
 <x-layout>
     <div class="flex">
-        <aside class="bg-white w-screen md:w-[250px] p-4 h-screen">
+        <aside class="bg-primary-neutral-dark w-screen md:w-[250px] p-4 h-screen border-e border-stone-600">
             <nav>
                 <ul class="flex flex-col">
-                    <li class="hover:bg-primary-neutral-dark bg-primary-neutral-dark bg-opacity-80 rounded-lg">
-                        <a class="px-2 py-3 inline-block w-full" href="{{ route("project.dashboard", ["user" => $user, "project" => $project]) . "/databases" }}">Databases</a>
+                    <li class="hover:bg-primary-neutral-dark bg-primary-neutral-dark rounded-lg my-2">
+                        <a class="{{'px-4 py-3 inline-block w-full hover:bg-zinc-900 rounded-lg' . (request()->routeIs("project.databases") ? " bg-zinc-900" : "" )}}" href="{{ route("project.dashboard", ["user" => $user, "project" => $project]) . "/databases" }}">Databases</a>
                     </li>
-                    <li class="hover:bg-primary-neutral-dark bg-opacity-80 rounded-lg">
-                        <a class="px-2 py-3 inline-block w-full" href="">API Requests</a>
+                    <li class="hover:bg-primary-neutral-dark bg-primary-neutral-dark rounded-lg my-2">
+                        <a class="{{'px-4 py-3 inline-block w-full hover:bg-zinc-900 rounded-lg' . (request()->routeIs("project.databases") ? " bg-zinc-900" : "" )}}" href="">API Requests</a>
                     </li>
-                    <li class="hover:bg-primary-neutral-dark bg-opacity-80 rounded-lg">
-                        <a class="px-2 py-3 inline-block w-full" href="">File Storage</a>
+                    <li class="hover:bg-primary-neutral-dark bg-primary-neutral-dark rounded-lg my-2">
+                        <a class="{{'px-4 py-3 inline-block w-full hover:bg-zinc-900 rounded-lg' . (request()->routeIs("project.databases") ? " bg-zinc-900" : "" )}}" href="">File Storage</a>
                     </li>
-                    <li class="hover:bg-primary-neutral-dark bg-opacity-80 rounded-lg">
-                        <a class="px-2 py-3 inline-block w-full" href="">Authentication</a>
+                    <li class="hover:bg-primary-neutral-dark bg-primary-neutral-dark rounded-lg my-2">
+                        <a class="{{'px-4 py-3 inline-block w-full hover:bg-zinc-900 rounded-lg' . (request()->routeIs("project.databases") ? " bg-zinc-900" : "" )}}" href="">Authentication</a>
                     </li>
                 </ul>
             </nav>

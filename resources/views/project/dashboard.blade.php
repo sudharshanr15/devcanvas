@@ -2,6 +2,6 @@
 
 @section('main')
     <div class="p-8">
-        <h1 class="text-3xl font-bold text-gray-900">Project Dashboard</h1>
+        <h1 class="text-3xl font-bold text-slate-200">Project Dashboard</h1>
     </div>
 @endsection
