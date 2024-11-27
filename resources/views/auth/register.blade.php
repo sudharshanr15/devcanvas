@@ -1,38 +1,50 @@
-<form action="/register" method="post">
-    @csrf
+<x-layout>
 
-    <div>
-        <label for="first_name">First Name</label>
-        <input type="text" id="first_name" name="first_name" required>
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+        <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Sign in to your account</h2>
     </div>
-    <div>
-        <label for="last_name">Last Name</label>
-        <input type="text" id="last_name" name="last_name" required>
-    </div>
-    <div>
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-    </div>
-    <div>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-    <div>
-        <label for="confirm_password">Confirm Password</label>
-        <input type="password" id="confirm_password" name="password_confirmation" required>
-    </div>
-    <div>
-        <button type="reset">Reset</button>
-        <button type="submit">Register</button>
-    </div>
-</form>
 
-@if($errors->any())
-<div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form class="space-y-6" action="#" method="POST">
+            @csrf
+            <div class="w-full my-3">
+                <x-label for="first_name">First Name</x-label>
+                <x-input name="first_name" :required="true" :value="old('first_name')" id="first_name"></x-input>
+                <x-form-error name="first_name" />
+            </div>
+            <div class="w-full my-3">
+                <x-label for="last_name">Last Name</x-label>
+                <x-input name="last_name" :required="true" :value="old('last_name')" id="last_name"></x-input>
+                <x-form-error name="last_name" />
+            </div>
+            <div class="w-full my-3">
+                <x-label for="email">Email</x-label>
+                <x-input type="email" name="email" :required="true" :value="old('email')" id="email"></x-input>
+                <x-form-error name="email" />
+            </div>
+            <div class="w-full my-3">
+                <x-label for="password">Password</x-label>
+                <x-input type="password" name="password" :required="true" :value="old('password')" id="password"></x-input>
+                <x-form-error name="password" />
+            </div>
+            <div class="w-full my-3">
+                <x-label for="confirm_password">Confirm Password</x-label>
+                <x-input type="password" name="password_confirmation" :required="true" :value="old('password_confirmation')" id="confirm_password"></x-input>
+                <x-form-error name="password_confirmation" />
+            </div>
+            <div>
+                <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+            </div>
+        </form>
+
+        <p class="mt-10 text-center text-sm/6 text-gray-500">
+            Not a member?
+            <a href="{{ route("register") }}" class="font-semibold text-indigo-600 hover:text-indigo-500">Register</a>
+        </p>
     </div>
-@endif
+</div>
+
+
+</x-layout>
