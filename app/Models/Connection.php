@@ -9,20 +9,22 @@ use Illuminate\Support\Facades\DB;
 class Connection extends Model
 {
     public static function getDynamicConnection(UserDatabases $database){
-        Config::set("database.connections.{$database->database}", [
+        $override = [
             'driver' => $database->driver,
             'host' => $database->host,
             'port' => $database->port,
             'database' => $database->database,
             'username' => $database->username,
             'password' => $database->password,
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'prefix_indexes' => true,
-            'strict' => true,
-        ]);
+        ];
+        $config = array_merge(Config::get("database.connections.{$database->driver}"), $override);
+        $connection_name = self::getConfigConnectionName($database);
+        Config::set("database.connections.{$connection_name}", $config);
 
-        return DB::connection($database->database);
+        return DB::connection($connection_name);
+    }
+
+    public static function getConfigConnectionName(UserDatabases $database){
+        return $database->driver . "_" . $database->database;
     }
 }

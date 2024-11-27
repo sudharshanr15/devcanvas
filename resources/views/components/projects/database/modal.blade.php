@@ -18,16 +18,16 @@
                       <div class="relative mt-2 rounded-md shadow-sm">
                         <select id="driver" name="driver" class="bg-white block w-full rounded-md border-0 py-1.5 px-7 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">
                           <option value="mysql">MySQL</option>
-                          <option value="pgsql">PgSQL</option>
+                          <option value="pgsql">PostgreSQL</option>
                         </select>
                       </div>
                     </div>
-                    <div class="w-full my-3">
+                    {{-- <div class="w-full my-3">
                       <label for="host" class="block text-sm/6 font-medium text-gray-900">Host</label>
                       <div class="relative mt-2 rounded-md shadow-sm">
                         <x-input type="text" name="host" id="host" required={{ true }} placeholder="Enter hostname" value="mysql"></x-input>
                       </div>
-                    </div>
+                    </div> --}}
                     <div class="w-full my-3">
                       <label for="port" class="block text-sm/6 font-medium text-gray-900">Port Address</label>
                       <div class="relative mt-2 rounded-md shadow-sm">

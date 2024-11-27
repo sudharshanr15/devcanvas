@@ -10,6 +10,8 @@ use App\Models\UserDatabases;
 use Exception;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Validation\ValidationException;
 
@@ -94,7 +96,7 @@ class CollectionsController extends Controller
 
         $connection = Connection::getDynamicConnection($database);
 
-        if (Schema::connection($database->database)->hasTable($tableName)) {
+        if (Schema::connection(Connection::getConfigConnectionName($database))->hasTable($tableName)) {
             return [
                 'status' => false,
                 'message' => "Table '{$tableName}' already exists."
@@ -102,7 +104,7 @@ class CollectionsController extends Controller
         }
 
         try{
-            Schema::connection($database->database)->create($tableName, function (Blueprint $table) use ($columns) {
+            Schema::connection(Connection::getConfigConnectionName($database))->create($tableName, function (Blueprint $table) use ($columns) {
                 foreach ($columns as $column) {
                     // Define column type
                     $columnType = $column['type'];

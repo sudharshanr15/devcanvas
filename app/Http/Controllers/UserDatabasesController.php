@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Enums\DBDrivers;
+use App\Enums\DBHost;
 use App\Models\Connection;
 use App\Models\Projects;
 use App\Models\User;
 use App\Models\UserDatabases;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 
@@ -30,7 +33,6 @@ class UserDatabasesController extends Controller
         $request->validate([
             "driver" => [Rule::enum(DBDrivers::class)],
             "database" => ["required", "max:50", "unique:user_databases,database", 'regex:/^[a-zA-Z_][a-zA-Z0-9_]*$/'],
-            "host" => ["required"],
             "port" => ["required"],
             // "username" => ['required'],
             // "password" => ["required"],
@@ -39,15 +41,14 @@ class UserDatabasesController extends Controller
         $attributes = [
             "database" => request("database"),
             "driver" => request("driver"),
-            "host" => request("host"),
+            "host" => DBHost::getHost(DBDrivers::from(request("driver")))->value,
             "port" => request("port"),
             "projects_id" => $project->id,
-            "username" => config("database.connections.common.username"),
+            "username" => "devcanvas",
             "password" => config('database.connections.common.password'),
         ];
 
-        $database_info = new UserDatabases([...$attributes, "database" => ""]);
-
+        $database_info = new UserDatabases([...$attributes, "database" => "devcanvas"]);
         $db = Connection::getDynamicConnection($database_info);
 
         try{
