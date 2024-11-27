@@ -18,6 +18,7 @@
             <thead>
                 <th>
                     <tr>
+                        <th>Collection ID</th>
                         <th>Collection Name</th>
                     </tr>
                 </th>
@@ -26,6 +27,9 @@
                 @foreach ($collections as $collection)
                     <tr>
                         {{-- <x-projects.database-list :user="$user" :project="$project" :db="$db"></x-projects.database-list> --}}
+                        <td>
+                            <a href="">{{ $collection->id }}</a>
+                        </td>
                         <td>
                             <a href="">{{ $collection->name }}</a>
                         </td>
@@ -81,7 +85,7 @@
             <div class="w-full my-3">
                 <label for="default_value" class="block text-sm/6 font-medium text-gray-900">Default Value</label>
                 <div class="relative mt-2 rounded-md shadow-sm">
-                    <x-input type="text" name="columns[${column_count}][default]" id="default_value" required={{ true }} placeholder="Enter Default Value"></x-input>
+                    <x-input type="text" name="columns[${column_count}][default]" id="default_value" placeholder="Enter Default Value"></x-input>
                 </div>
             </div>
 

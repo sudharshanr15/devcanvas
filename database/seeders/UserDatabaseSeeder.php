@@ -16,12 +16,14 @@ class UserDatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $udb = UserDatabases::all()->where("database", "project1")->first();
+        $udb = UserDatabases::all()->where("database", "first_database")->first();
         Connection::getDynamicConnection($udb);
-        for ($i = 0; $i < 10; $i++) {
-            DB::connection($udb->database)->table("book")->insert([
-                'name' => fake()->words(3, true),
-                'price' => rand(10, 100)
+        for ($i = 0; $i < 20; $i++) {
+            DB::connection(Connection::getConfigConnectionName($udb))->table("users")->insert([
+                'first_name' => fake()->firstName(),
+                'last_name' => fake()->lastName(),
+                'email' => fake()->email(),
+                "password" => fake()->password()
             ]);
         }
     }

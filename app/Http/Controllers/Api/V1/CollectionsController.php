@@ -19,8 +19,9 @@ class CollectionsController extends Controller
     public function index(Projects $project, UserDatabases $database, Collections $collection)
     {
         Connection::getDynamicConnection($database);
-        $response = DB::connection($database->database)->table($collection->name)->get();
-
+        $connection_name = Connection::getConfigConnectionName($database);
+        $response = DB::connection($connection_name)->table($collection->name)->get();
+        DB::purge($connection_name);
         return $response;
     }
 
@@ -37,15 +38,18 @@ class CollectionsController extends Controller
      */
     public function show(Projects $project, UserDatabases $database, Collections $collection, string $id)
     {
+        $connection_name = Connection::getConfigConnectionName($database);
         $primaryKey = $this->getPrimaryKey($database, $collection);
-        $response = DB::connection($database->database)->table($collection->name)->where($primaryKey, $id)->get();
+        $response = DB::connection($connection_name)->table($collection->name)->where($primaryKey, $id)->get();
         // return CollectionsResource::collection($response->toArray());
         return new CollectionsResource($response);
     }
 
     public function getPrimaryKey(UserDatabases $database, Collections $collection){
         Connection::getDynamicConnection($database);
-        $primaryKey = DB::connection($database->database)->table('information_schema.COLUMNS')
+        $connection_name = Connection::getConfigConnectionName($database);
+
+        $primaryKey = DB::connection($connection_name)->table('information_schema.COLUMNS')
             ->where('TABLE_SCHEMA', $database->database)
             ->where('TABLE_NAME', $collection->name)
             ->where('COLUMN_KEY', 'PRI')
